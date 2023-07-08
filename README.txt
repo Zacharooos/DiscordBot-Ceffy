@@ -1,16 +1,23 @@
-- Python é a linguagem escolhida
-- Faremos inicialmente para discord
-- Possivel adaptação para telegram/whatsapp/web no futuro
+Como usar:
+    O bot só funciona enquanto o processo inicial estiver rodando, para checar, verifique se o bot está online no servidor.
+    Não se esqueça de baixar as bibliotecas utilizadas (pip install py-cord).
+    Recomendo utilizar um ambiente virtual.
+    Tente seguir o padrão pré estabelecido, se fugir muito escopo eu vou perseguir vocês
+    - ZC
 
 Funcionalidades:
-    - Acesso à repositório de provas. MMS
+    - Implementar estrutura inicial. ZC ✅
+    - Implementar funções por comando "/exemplo" ZC
+    - cadastrar datas de provas ZC
     - getResumos ZC
+
+    - Acesso à repositório de provas. MMS
+    
     - getCurrentCalendario CJ
         - getCurrentCalendario text CJ
     - getEmentaMateria (tal) CJ
-    - cadastrar datas de provas ZC
+    
     - getTurorial (software) (talvez) ADN
+    
     - canal de avisos (baseado nas provas) ADY
 
-# Marcar Aulao de git
-# Marcar Inicio de Projeto
