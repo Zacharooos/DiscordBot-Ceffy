@@ -1,6 +1,10 @@
 # Arquivo de scripts para Comandos Básicos vs 0.1
 # Escreva aqui funções genéricas ou básicas. 
 # Pode ser utilizado para fazer testes, simbolize com #TESTE em cima da Func.
+
+#####################################
+# SUBSTITUIDO POR commands/setup.py #
+#####################################
  
 import discord
 
