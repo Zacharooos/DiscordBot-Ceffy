@@ -34,6 +34,7 @@ if __name__ ==  "__main__":
 
     # Por enquanto, vamos carregar cada resposta individualmente, estou trabalhando para resolve isso.
     callFalae(client)
+    callSoma(client)
 
     # Função que termina a configuração dos comandos e Inicia o Bot
     terminarConfig(client, token)
