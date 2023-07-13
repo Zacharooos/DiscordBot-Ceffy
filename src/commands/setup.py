@@ -1,23 +1,29 @@
 # ARQUIVO DE SETUP DE COMANDOS DO BOT v0.4#
-# - Aqui serão importadas as funções "start" de cada comando do bot
+# - Aqui serão importadas as funções de cada comando do bot
 # - A função principal setup_commands recebe a tree como parâmetro e popula com os comandos
 # - Tentem seguir o padrão de comentário/descrição, declaração, e espaço para proximo comando
 
 
 # Imports gerais
 import discord
+from typing import List, Optional
 
 # Imports dos comandos
-from commands.soma.functions import start as command_soma
+import commands.soma.functions as soma
+import commands.ementa.functions as ementa
 
 
-def setup_commands(tree) -> bool:
+def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
     try:
         '''
         ##COMANDO TESTE##
         Comando apenas para testar se a ceffy está acordada e esperta 🥶🤖
         '''
-        @tree.command(name='teste', description='Teste de slash', guild=discord.Object(id=994616556401197179))
+        @tree.command(
+                name='teste',
+                description='Teste de slash',
+                guild=discord.Object(id=994616556401197179)
+                )
         async def self(interaction: discord.Interaction, var: str):
             await interaction.response.send_message(f"Oi. Você mandou '{var}'!")
 
@@ -26,9 +32,39 @@ def setup_commands(tree) -> bool:
         ##COMANDO SOMA##
         Comando que pega dois números e responde uma mensagem com a soma deles
         '''
-        @tree.command(name='soma', description='Soma de dois inteiros', guild=discord.Object(id=994616556401197179))
+        @tree.command(
+                    name='soma',
+                    description='Soma de dois inteiros',
+                    guild=discord.Object(id=994616556401197179)
+                    )
         async def self(interaction: discord.Interaction, a: int, b: int):
-            await interaction.response.send_message(command_soma(a,b))
+            await interaction.response.send_message(soma.start(a,b))
+
+
+        '''
+        ##COMANDO EMENTA##
+        Ceffy baixa o pdf das ementas de um periodo do ste da e-computacao.com.br e envia 
+        uma mensagem com o arquivo.
+        '''
+        @tree.command(
+                    name='ementa_por_periodo', 
+                    description='PDF da ementa das matérias de um período.', 
+                    guild=discord.Object(id=994616556401197179)
+                    )
+        @discord.app_commands.choices(periodo=ementa.choices_periodos())
+        async def self(interaction: discord.Interaction, periodo: discord.app_commands.Choice[str]):
+            try:
+                msg, file = ementa.start_periodo(int(periodo.value))
+                filename = f'{periodo.value}periodo.pdf' if int(periodo.value) <= 10 else 'optativas.pdf'
+                await interaction.response.send_message(msg, 
+                                                        file=discord.File(fp=file, filename=filename),
+                                                        ephemeral=False)
+            except Exception as e:
+                # TODO: Fazer log e notificação de erro (report_error)
+                # Vou deixar esse print como forma de log por enquanto
+                print(f'Erro comando ementa_por_periodo!\n{e}')
+                msg_error = 'Foi mal, nao consegui pegar seu PDF 😥'
+                await interaction.response.send_message(msg_error, ephemeral=True)
 
 
         '''
