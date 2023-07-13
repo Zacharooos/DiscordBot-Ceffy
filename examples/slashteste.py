@@ -4,6 +4,7 @@
 
 import discord
 from discord import app_commands 
+from src.fileConfigurar import recuperarToken
 
 class aclient(discord.Client):
     def __init__(self):
@@ -24,4 +25,4 @@ tree = app_commands.CommandTree(client)
 async def slash2(interaction: discord.Interaction):
     await interaction.response.send_message(f"Onii-chan o((>ω< ))o")
 
-client.run('MTA3MjE2NTQ3NDUyMTA3MTcxNg.GCW2tt.Ndp7sIUfDrnXjoyzEuk3QOqTNMRY9rJo1T7Fq4')
+client.run(recuperarToken())

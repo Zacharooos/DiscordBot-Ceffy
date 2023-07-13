@@ -32,5 +32,8 @@ def iniciarConfig():
 
 # Dá partida do bot depois de terminar as configurações
 def terminarConfig(client, token):
-    client.run(token)
-    return 0
+    try:
+        client.run(token)
+    except discord.errors.LoginFailure as e:
+        print(f"Ocorreu um erro ao logar na Ceffy:\n{e}")
+    return 
