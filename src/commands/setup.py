@@ -14,6 +14,7 @@ from typing import List, Optional
 # Imports dos comandos
 import commands.soma.functions as soma
 import commands.ementa.functions as ementa
+import commands.resumos.functions as resumos
 
 
 def setup_commands(tree: discord.app_commands.CommandTree) -> bool:

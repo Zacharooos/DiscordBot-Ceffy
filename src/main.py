@@ -18,9 +18,6 @@ from commands.setup import setup_commands
 
 # Chamadas da funções
 if __name__ ==  "__main__":
-    
-    # Função de referêncio, em caso de dúvidas, verifique a fileExemplo
-    funcaoExemplo()
 
     # Função que carrega o Token
     token = recuperarToken()
