@@ -7,12 +7,12 @@ Como usar:
 
 Funcionalidades:
     - Implementar estrutura inicial. ZC ✅
-    - Implementar funções por comando "/exemplo" ZC
+    - Acesso à repositório de provas. ZC
     - cadastrar datas de provas ZC
     - getResumos ZC
 
-    - Acesso à repositório de provas. MMS
     
+    - Implementar funções por comando "/exemplo" CJ ✅
     - getCurrentCalendario CJ
         - getCurrentCalendario text CJ
     - getEmentaMateria (tal) CJ

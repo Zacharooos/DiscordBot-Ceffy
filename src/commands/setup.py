@@ -3,6 +3,9 @@
 # - A função principal setup_commands recebe a tree como parâmetro e popula com os comandos
 # - Tentem seguir o padrão de comentário/descrição, declaração, e espaço para proximo comando
 
+# Constantes
+
+ID = 994616556401197179
 
 # Imports gerais
 import discord
@@ -22,7 +25,7 @@ def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
         @tree.command(
                 name='teste',
                 description='Teste de slash',
-                guild=discord.Object(id=994616556401197179)
+                guild=discord.Object(id=ID)
                 )
         async def self(interaction: discord.Interaction, var: str):
             await interaction.response.send_message(f"Oi. Você mandou '{var}'!")
@@ -35,7 +38,7 @@ def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
         @tree.command(
                     name='soma',
                     description='Soma de dois inteiros',
-                    guild=discord.Object(id=994616556401197179)
+                    guild=discord.Object(id=ID)
                     )
         async def self(interaction: discord.Interaction, a: int, b: int):
             await interaction.response.send_message(soma.start(a,b))
@@ -49,7 +52,7 @@ def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
         @tree.command(
                     name='ementa_por_periodo', 
                     description='PDF da ementa das matérias de um período.', 
-                    guild=discord.Object(id=994616556401197179)
+                    guild=discord.Object(id=ID)
                     )
         @discord.app_commands.choices(periodo=ementa.choices_periodos())
         async def self(interaction: discord.Interaction, periodo: discord.app_commands.Choice[str]):
@@ -65,6 +68,19 @@ def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
                 print(f'Erro comando ementa_por_periodo!\n{e}')
                 msg_error = 'Foi mal, nao consegui pegar seu PDF 😥'
                 await interaction.response.send_message(msg_error, ephemeral=True)
+
+        '''
+        ##COMANDO RESUMOS##
+        Ceffy envia um link com acesso ao Drive com os resumos.
+        '''
+        @tree.command(
+                    name='resumos',
+                    description='Link do drive com os resumos',
+                    guild=discord.Object(id=ID)
+                    )
+        async def self(interaction: discord.Interaction):
+            await interaction.response.send_message(resumos.start_get_resumos())
+
 
 
         '''

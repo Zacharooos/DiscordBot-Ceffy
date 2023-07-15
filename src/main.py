@@ -12,7 +12,6 @@ import discord
 from discord.ext import commands
 
 # Imports de files auxiliares
-from fileExemplo import *
 from fileConfigurar import *
 from scriptComandosBasicos import *
 from commands.setup import setup_commands

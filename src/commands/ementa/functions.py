@@ -3,7 +3,7 @@ from discord.app_commands import Choice
 from typing import List, Tuple
 from io import BytesIO
 
-
+# ...
 def choices_materia() -> List[Choice]:
     materias = [
         Choice(name='abc', value='abc'),
@@ -11,7 +11,7 @@ def choices_materia() -> List[Choice]:
     ]
     return materias
 
-
+# ...
 def choices_periodos() -> List[Choice]:
     periodos = []
     for i in range(1,10):
@@ -21,12 +21,13 @@ def choices_periodos() -> List[Choice]:
     periodos.append(Choice(name='Optativas', value='11'))
     return periodos
 
-
+# ...
 def start_materia(periodo: str, materia: str) -> Tuple[str, bytes]:
     msg = "Aqui está o seu arquivo!\nEspero ter ajudado 🫡"
     file = open('README.txt', 'rb')
     return msg, file
 
+# Função que recebe um período e retorna o um pdf com o conteúdo.
 def start_periodo(periodo: int) -> Tuple[str, BytesIO]:
     # Pegando URL com base no período
     if(periodo > 10):
