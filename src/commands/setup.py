@@ -82,6 +82,17 @@ def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
         async def self(interaction: discord.Interaction):
             await interaction.response.send_message(resumos.start_get_resumos())
 
+        '''
+        ##COMANDO PROVAS##
+        Ceffy envia um link com acesso ao Drive com os resumos.
+        '''
+        @tree.command(
+                    name='provas',
+                    description='Link do drive com os provas',
+                    guild=discord.Object(id=ID)
+                    )
+        async def self(interaction: discord.Interaction):
+            await interaction.response.send_message(resumos.start_get_provas())
 
 
         '''

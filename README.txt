@@ -7,15 +7,16 @@ Como usar:
 
 Funcionalidades:
     - Implementar estrutura inicial. ZC ✅
-    - Acesso à repositório de provas. ZC
+    - GetProvas. ZC ✅
+    - getResumos ZC ✅
+    - Upgrade no getResumos e GetProvas 
     - cadastrar datas de provas ZC
-    - getResumos ZC
 
     
     - Implementar funções por comando "/exemplo" CJ ✅
+    - getEmentaMateria (tal) CJ ✅
     - getCurrentCalendario CJ
         - getCurrentCalendario text CJ
-    - getEmentaMateria (tal) CJ
     
     - getTurorial (software) (talvez) ADN
     
