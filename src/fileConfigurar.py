@@ -7,7 +7,7 @@ from discord.ext.commands import Bot
 
 # Função de referêncio, em caso de dúvidas, verifique a fileExemplo
 def recuperarToken():
-    with open("config.json") as f:
+    with open("src/config.json") as f:
         token = json.load(f)['token']
 
     return token
