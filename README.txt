@@ -9,8 +9,10 @@ Funcionalidades:
     - Implementar estrutura inicial. ZC ✅
     - GetProvas. ZC ✅
     - getResumos ZC ✅
-    - Upgrade no getResumos e GetProvas 
+
     - cadastrar datas de provas ZC
+    
+    - Upgrade no getResumos e GetProvas -> Depende de local-files
 
     
     - Implementar funções por comando "/exemplo" CJ ✅

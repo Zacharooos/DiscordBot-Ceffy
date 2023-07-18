@@ -7,10 +7,3 @@ def start_get_resumos():
     
     # Retornando
     return msg
-
-# Função que retorna um link com as provas.
-def start_get_provas():
-    msg = f"Aqui está o link com acesso ao Drive de Provas: \n-> https://drive.google.com/drive/folders/1ZdiguzhfjE5gcUWJ40XF9qwBbRBIbTru"
-    
-    # Retornando
-    return msg
