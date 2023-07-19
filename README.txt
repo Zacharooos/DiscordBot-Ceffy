@@ -12,19 +12,23 @@ Funcionalidades:
 
     - cadastrar datas de provas ZC
     
-    - Upgrade no getResumos e GetProvas -> Depende de local-files
+    - Ler o PDF de ementa e separar as palavras chave em variáveis para usar em um embeed ZC
+    - Upgrade no getResumos e GetProvas -> Depende de local-files ZC
 
     
     - Implementar funções por comando "/exemplo" CJ ✅
     - getEmentaMateria (tal) CJ ✅
     - getCurrentCalendario CJ
         - getCurrentCalendario text CJ
+    - Criar tratamento de Erros
     - Infos
-    
+
     - getTurorial (software) (talvez) ADN
     
     - canal de avisos (baseado nas provas) ADY
 
-# Marcar Aulao de git
-# Marcar Inicio de Projeto
-# Matheus nao bagunçar o codigo!
+# Criação de um arquivo PY com constantes de Links
+# Criação de um Json com as matérias
+# Ler o PDF de ementa
+# Criar tratamento de Erros (log)
+

@@ -25,6 +25,7 @@ def check_tag(string):
 
     if tag in data_text:
         return False
-    
-check_tag("cras")
+
+# Rascunho    
+#check_tag("cras")
 
