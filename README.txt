@@ -19,6 +19,7 @@ Funcionalidades:
     - getEmentaMateria (tal) CJ ✅
     - getCurrentCalendario CJ
         - getCurrentCalendario text CJ
+    - Infos
     
     - getTurorial (software) (talvez) ADN
     

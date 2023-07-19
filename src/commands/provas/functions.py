@@ -1,11 +1,16 @@
 # Provas version 0.1
 
+from discord import Embed
+
 # Função que retorna um link com as provas.
-def start_get_provas():
-    msg = f"Aqui está o link com acesso ao Drive de Provas: \n-> https://drive.google.com/drive/folders/1ZdiguzhfjE5gcUWJ40XF9qwBbRBIbTru"
+def start_get_provas() -> Embed:
+    embed = Embed(colour=0x0049db)
+    link = "https://drive.google.com/drive/folders/1ZdiguzhfjE5gcUWJ40XF9qwBbRBIbTru"
+    msg = f"Clique [aqui]({link}) para acessar o Drive de Provas"
+    embed.description = msg
     
     # Retornando
-    return msg
+    return embed
 
 def check_tag(string):
     data = open("data/dataProvasCalendar.txt", "r")

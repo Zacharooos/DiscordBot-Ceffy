@@ -80,7 +80,7 @@ def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
                     guild=discord.Object(id=ID)
                     )
         async def self(interaction: discord.Interaction):
-            await interaction.response.send_message(resumos.start_get_resumos())
+            await interaction.response.send_message(embed=resumos.start_get_resumos())
 
         '''
         ##COMANDO PROVAS##
@@ -92,7 +92,7 @@ def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
                     guild=discord.Object(id=ID)
                     )
         async def self(interaction: discord.Interaction):
-            await interaction.response.send_message(provas.start_get_provas())
+            await interaction.response.send_message(embed=provas.start_get_provas())
 
 
         '''
