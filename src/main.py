@@ -26,7 +26,7 @@ if __name__ ==  "__main__":
     client, tree = iniciarConfig()
 
     # Função que adiciona comando à command tree
-    ok = setup_commands(tree)
+    ok = setup_commands(tree, client)
     assert ok is True, "Abortando inicialização..."
 
     # Função que termina a configuração dos comandos e Inicia o Bot

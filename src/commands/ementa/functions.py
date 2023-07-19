@@ -40,7 +40,7 @@ def start_periodo(periodo: int) -> Tuple[str, BytesIO]:
     # Fazendo download e inserindo no buffer
     file = requests.get(url, allow_redirects=True)
     if(file.status_code != 200):
-        raise ConnectionError(f"Não foi possível fazer o download. status_code:{file.status_code}")
+        raise ConnectionError(f"Não foi possível fazer o download. status_code: {file.status_code}")
     content = BytesIO(file.content)
 
     # Retornando

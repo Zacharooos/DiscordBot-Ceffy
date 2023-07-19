@@ -9,7 +9,7 @@ ID = 994616556401197179
 
 # Imports gerais
 import discord
-from typing import List, Optional
+from logsService import Logs
 
 # Imports dos comandos
 import commands.soma.functions as soma
@@ -17,7 +17,10 @@ import commands.provas.functions as provas
 import commands.ementa.functions as ementa
 import commands.resumos.functions as resumos
 
-def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
+def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Client) -> bool:
+    # Inicializando Services
+    logs = Logs(client)
+
     try:
         '''
         ##COMANDO TESTE##
@@ -29,7 +32,7 @@ def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
                 guild=discord.Object(id=ID)
                 )
         async def self(interaction: discord.Interaction, var: str):
-            await interaction.response.send_message(f"Oi. Você mandou '{var}'!")
+            await interaction.response.send_message(f"Oi Onii-chan o((>ω< ))o. \nVocê mandou '{var}'!")
 
 
         '''
@@ -64,11 +67,9 @@ def setup_commands(tree: discord.app_commands.CommandTree) -> bool:
                                                         file=discord.File(fp=file, filename=filename),
                                                         ephemeral=False)
             except Exception as e:
-                # TODO: Fazer log e notificação de erro (report_error)
-                # Vou deixar esse print como forma de log por enquanto
-                print(f'Erro comando ementa_por_periodo!\n{e}')
                 msg_error = 'Foi mal, nao consegui pegar seu PDF 😥'
                 await interaction.response.send_message(msg_error, ephemeral=True)
+                await logs.report_error('ementa_por_periodo', e)
 
         '''
         ##COMANDO RESUMOS##
