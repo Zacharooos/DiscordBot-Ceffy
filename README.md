@@ -14,8 +14,8 @@ Recomentamos o uso de Python 3.8 para cima. As bibliotecas necessárias estão l
 
 ### Especiais:
 Utilizamos a biblioteca `pdf2image` para transformar pdf em png, e ela precisa do _poppler_ instalado no sistema.  
-Para instalar no linx é simples, apenas mande um `sudo apt-get install poppler-utils` no terminal. 
-Para instalar em outros sistemas, verifique no [README do poppler](https://github.com/Belval/pdf2image#how-to-install).
+Para instalar no linux é simples, apenas mande um `sudo apt-get install poppler-utils` no terminal. 
+Para instalar em outros sistemas, verifique no [README do pdf2image](https://github.com/Belval/pdf2image#how-to-install).
 
 
 
