@@ -42,6 +42,6 @@ Para instalar em outros sistemas, verifique no [README do pdf2image](https://git
 
 **Tarefas:**
 - Criação de um arquivo PY com constantes de Links
-- Criação de um Json com as matérias
+- Criação de um Json com as matérias ✅
 - Ler o PDF de ementa
 

@@ -1,0 +1,224 @@
+{
+    "materias": {
+        "Introdução a Engenharia":{
+            "key": "1A",
+            "periodo": 1
+        },
+        "Administração e Organização Empresarial":{
+            "key": "1B",
+            "periodo": 1
+        },
+        "Geometria Analítica":{
+            "key": "1C",
+            "periodo": 1
+        },
+        "Pré-Calculo": {
+            "key": "1D",
+            "periodo": 1 
+        },
+        "Introdução a Ciência da Computação": {
+            "key": "1E",
+            "periodo": 1
+        },
+        "Lógica para Computação": {
+            "key": "1F",
+            "periodo": 1
+        },
+        "Projeto de Interação":{
+            "key": "1G",
+            "periodo": 1
+        },
+        "Leitura e Produção de Textos": {
+            "key": "1H",
+            "periodo": 1
+        },
+        "Ética Profissional": {
+            "key": "2A",
+            "periodo": 2
+        },
+        "Cálculo a uma Variável": {
+            "key": "2B",
+            "periodo": 2
+        },
+        "Álgebra Linear": {
+            "key": "2C",
+            "periodo": 2
+        },
+        "Mecânica Clássica": {
+            "key": "2D",
+            "periodo": 2
+        },
+        "Estruturas Discretas": {
+            "key": "2E",
+            "periodo": 2 
+        },
+        "Introdução a Programação": {
+            "key": "2F",
+            "periodo": 2
+        },
+        "Introdução a Economia": {
+            "key": "2G",
+            "periodo": 2
+        },
+        "Introdução a Engenharia Ambiental": {
+            "key": "3A",
+            "periodo": 3
+        },
+        "Calculo a várias Variáveis": {
+            "key": "3B",
+            "periodo": 3
+        },
+        "Termodinâmica": {
+            "key": "3C",
+            "periodo": 3
+        },
+        "Software Básico": {
+            "key": "3D",
+            "periodo": 3
+        },
+        "Algoritmos e Estruturas de Dados I": {
+            "key": "3E",
+            "periodo": 3
+        },
+        "Modelagem de Dados": {
+            "key": "3F",
+            "periodo": 3
+        },
+        "Humanidades e Ciências Sociais": {
+            "key": "3G",
+            "periodo": 3
+        },
+        "Equações Diferenciais Ordinárias I": {
+            "key": "4A",
+            "periodo": 4
+        },
+        "Eletromagnetismo": {
+            "key": "4B",
+            "periodo": 4
+        },
+        "Redes de Computadores I": {
+            "key": "4C",
+            "periodo": 4
+        },
+        "Arquitetura de Computadores": {
+            "key": "4D",
+            "periodo": 4
+        },
+        "Algoritmos e Estruturas de Dados II": {
+            "key": "4E",
+            "periodo": 4
+        },
+        "Banco de Dados": {
+            "key": "4F",
+            "periodo": 4
+        },
+        "Probabilidade e Estatística": {
+            "key": "5A",
+            "periodo": 5
+        },
+        "Sistemas Operacionais": {
+            "key": "5B",
+            "periodo": 5
+        },
+        "Redes de Computadores II": {
+            "key": "5C",
+            "periodo": 5
+        },
+        "Circuitos Lineares": {
+            "key": "5D",
+            "periodo": 5
+        },
+        "Cálculo Numérico": {
+            "key": "5E",
+            "periodo": 5
+        },
+        "Engenharia de Software": {
+            "key": "5F",
+            "periodo": 5
+        },
+        "Programação Orientada a Objetos": {
+            "key": "5G",
+            "periodo": 5
+        },
+        "Sinais e Sistemas": {
+            "key": "6A",
+            "periodo": 6
+        },
+        "Ondulatória e Física Moderna": {
+            "key": "6B",
+            "periodo": 6
+        },
+        "Servidores de Redes": {
+            "key": "6C",
+            "periodo": 6
+        },
+        "Lab. de Circuitos Elétricos e Eletrônicos": {
+            "key": "6D",
+            "periodo": 6
+        },
+        "Eletrônica Analógica": {
+            "key": "6E",
+            "periodo": 6
+        },
+        "Linguagens Formais e Autômatos": {
+            "key": "6F",
+            "periodo": 6
+        },
+        "Análise de Algoritmos": {
+            "key": "6G",
+            "periodo": 6
+        },
+        "Técnicas Digitais": {
+            "key": "7A",
+            "periodo": 7
+        },
+        "Programação Linear": {
+            "key": "7B",
+            "periodo": 7
+        },
+        "Processamento Digital de Sinais": {
+            "key": "7C",
+            "periodo": 7
+        },
+        "Metodologia Científica": {
+            "key": "7D",
+            "periodo": 7
+        },
+        "Sistemas Distribuídos": {
+            "key": "8A",
+            "periodo": 8
+        },
+        "Microcontroladores e Sistemas Embarcados": {
+            "key": "8B",
+            "periodo": 8
+        },
+        "Sistemas Inteligentes": {
+            "key": "8C",
+            "periodo": 8
+        },
+        "Computação Gráfica": {
+            "key": "8D",
+            "periodo": 8
+        },
+        "Sistemas de Controle": {
+            "key": "8E",
+            "periodo": 8
+        },
+        "Computação de Alto Desempenho": {
+            "key": "9A",
+            "periodo": 9
+        },
+        "Trabalho de Conclusão de Curso I": {
+            "key": "9B",
+            "periodo": 9
+        },
+        "Estágio Supervisionado": {
+            "key": "9C",
+            "periodo": 9
+        },
+        "Trabalho de Conclusão de Curso II": {
+            "key": "10A",
+            "periodo": 10
+        }
+    }
+}
