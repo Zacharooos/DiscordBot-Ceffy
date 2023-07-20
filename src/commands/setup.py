@@ -16,6 +16,7 @@ import commands.soma.functions as soma
 import commands.provas.functions as provas
 import commands.ementa.functions as ementa
 import commands.resumos.functions as resumos
+import commands.calendario.functions as calendario
 
 def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Client) -> bool:
     # Inicializando Services
@@ -71,6 +72,7 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                 await interaction.response.send_message(msg_error, ephemeral=True)
                 await logs.report_error('ementa_por_periodo', e)
 
+
         '''
         ##COMANDO RESUMOS##
         Ceffy envia um link com acesso ao Drive com os resumos.
@@ -83,6 +85,7 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
         async def self(interaction: discord.Interaction):
             await interaction.response.send_message(embed=resumos.start_get_resumos())
 
+
         '''
         ##COMANDO PROVAS##
         Ceffy envia um link com acesso ao Drive com os resumos.
@@ -94,6 +97,25 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                     )
         async def self(interaction: discord.Interaction):
             await interaction.response.send_message(embed=provas.start_get_provas())
+
+
+        '''
+        ##COMANDO CALENDARIO##
+        Ceffy envia uma imagem do calendario academico mais atualizado disponível em e-computacao.com.br
+        '''
+        @tree.command(
+                    name='calendario',
+                    description='Calendário acadêmico atual',
+                    guild=discord.Object(id=ID)
+                    )
+        async def self(interaction: discord.Interaction):
+            try:
+                embed, attachment = calendario.start()
+                await interaction.response.send_message(embed=embed, file=attachment, ephemeral=False)
+            except Exception as e:
+                msg_error = 'Não consegui pegar o calendário 😣'
+                await interaction.response.send_message(msg_error, ephemeral=True)
+                await logs.report_error('calendario', e)
 
 
         '''
