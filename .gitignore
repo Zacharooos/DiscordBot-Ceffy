@@ -2,3 +2,5 @@ venv
 *.pyc
 src/config.json
 virtualEnviroment/BotDiscord/
+examples/teste.txt
+*.Identifier
