@@ -1,6 +1,6 @@
 {
     "materias": {
-        "Introdução a Engenharia":{
+        "Introdução à Engenharia":{
             "key": "1A",
             "periodo": 1
         },
@@ -12,11 +12,11 @@
             "key": "1C",
             "periodo": 1
         },
-        "Pré-Calculo": {
+        "Pré-Cálculo": {
             "key": "1D",
             "periodo": 1 
         },
-        "Introdução a Ciência da Computação": {
+        "Introdução à Ciência da Computação": {
             "key": "1E",
             "periodo": 1
         },
@@ -52,11 +52,11 @@
             "key": "2E",
             "periodo": 2 
         },
-        "Introdução a Programação": {
+        "Introdução à Programação": {
             "key": "2F",
             "periodo": 2
         },
-        "Introdução a Economia": {
+        "Introdução à Economia": {
             "key": "2G",
             "periodo": 2
         },

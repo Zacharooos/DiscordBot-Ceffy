@@ -72,6 +72,22 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                 await interaction.response.send_message(msg_error, ephemeral=True)
                 await logs.report_error('ementa_por_periodo', e)
 
+        
+        @tree.command(
+                    name='detalhes_materia', 
+                    description='Ementa de uma matéria.', 
+                    guild=discord.Object(id=ID)
+                    )
+        async def self(interaction: discord.Interaction):
+            try:
+                embed = ementa.start_materia('Circuitos Lineares')
+                await interaction.response.send_message(embed=embed,
+                                                        ephemeral=True)
+            except Exception as e:
+                msg_error = 'Foi mal, nao consegui pegar os detalhes 😞'
+                await interaction.response.send_message(msg_error, ephemeral=True)
+                await logs.report_error('detalhes_materia', e)
+
 
         '''
         ##COMANDO RESUMOS##

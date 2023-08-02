@@ -1,15 +1,48 @@
 import requests
+import discord
+import re
 from discord.app_commands import Choice
+from json import load
 from typing import List, Tuple
 from io import BytesIO
+from extractPdf import read_pdf_pdfminer
+
+
+def download_ementa(periodo: int) -> BytesIO:
+    '''Faz o download de um pdf de ementa do período especificado'''
+    # Pegando URL com base no período
+    if(periodo > 10):
+        url = "http://e-computacao.com.br/files/ementas/optativas.pdf"
+    else:
+        url = f"http://e-computacao.com.br/files/ementas/{str(periodo).zfill(2)}.pdf"
+
+    # Fazendo download e inserindo no buffer
+    file = requests.get(url, allow_redirects=True)
+    if(file.status_code != 200):
+        raise ConnectionError(f"Não foi possível fazer o download. status_code: {file.status_code}")
+    return BytesIO(file.content)
+
+
+# Configura view das materias
+def setup_view_materia() -> discord.ui.View:
+    view = discord.ui.View()
+    view.timeout = 10
+    button = discord.ui.Button(label='Materia tal', style=discord.ButtonStyle.blurple)
+    view.add_item(button)
+    return view
+
 
 # ...
-def choices_materia() -> List[Choice]:
-    materias = [
-        Choice(name='abc', value='abc'),
-        Choice(name='def', value='def')
-    ]
-    return materias
+# def choices_materia(ctx: discord.Auto):
+#     materias = []
+#     with open("data/materias.json") as file:
+#         grade = load(file)
+#         i=0
+#         for materia in grade['materias']:
+#             materias.append(materia)
+#             i += 1
+#     print(i)
+#     return sorted([i for i in materia if i.startswith(ctx.value.lower())])
 
 # ...
 def choices_periodos() -> List[Choice]:
@@ -21,27 +54,111 @@ def choices_periodos() -> List[Choice]:
     periodos.append(Choice(name='Optativas', value='11'))
     return periodos
 
-# ...
-def start_materia(periodo: str, materia: str) -> Tuple[str, bytes]:
-    msg = "Aqui está o seu arquivo!\nEspero ter ajudado 🫡"
-    file = open('README.txt', 'rb')
-    return msg, file
+def start_materia(materia: str) -> discord.Embed:
+    '''Recebe uma materia e retorna Embed com os dados dela'''
+    
+    # Verificando o período da matéria e fazendo download
+    with open("data/materias.json") as json:
+        grade = load(json)
+        periodo = grade['materias'][materia]['periodo']
 
-# Função que recebe um período e retorna o um pdf com o conteúdo.
+    content = download_ementa(periodo)
+
+    # Pegando texto do pdf da materia
+    text = read_pdf_pdfminer(content)
+
+    # Tratando o texto para leitura (do python)
+    text = text.replace('\n', ' ').split('DISCIPLINA')
+    infos = None
+    for i in range(len(text)):
+        text[i] = text[i][1:].strip()
+        if text[i].startswith(materia.upper()):
+            infos = text[i]
+            break
+    assert infos is not None, 'Erro ao encontrar disciplina na string do pdf'
+
+    # Recuperando informações do texto
+    # Bibliografia complementar
+    infos, bibliografia_c = infos.split('BIBLIOGRAFIA COMPLEMENTAR')
+    bibliografia_c = bibliografia_c.split('•')
+    aux = ''
+    for item in bibliografia_c:
+        item = item.replace('  ', '')
+        aux = aux + f'• {item}\n'
+    bibliografia_c = aux
+
+    # Bibliografia basica
+    infos, bibliografia_b = infos.split('BIBLIOGRAFIA BÁSICA')
+    bibliografia_b = bibliografia_b.split('•')
+    bibliografia_b.pop(0)
+    aux = ''
+    for item in bibliografia_b:
+        item = item.replace('  ', '')
+        aux = aux + f'• {item}\n'
+    bibliografia_b = aux
+
+    # Ementa
+    infos, ementa = infos.split('EMENTA')
+    ementa = re.findall(r'\d+\.\s*(.*?)(?=\s*\d+\.|$)', ementa)
+    aux = ''
+    for i in range(1, len(ementa)):
+        ementa[i-1] = ementa[i].replace('  ', ' ')
+        aux = aux + f'{i}. {ementa[i]}\n'
+    ementa = aux
+
+    # Pré-requisitos
+    infos, pre_requisitos = infos.split('PRÉ-REQUISITOS')
+    pre_requisitos = re.findall(r'\d+\.\s*(.*?)(?=\s*\d+\.|$)', pre_requisitos)
+    aux = ''
+    for item in pre_requisitos:
+        aux = aux + f'• {item}\n'
+    pre_requisitos = aux
+
+    # Demais informações
+    infos, ciclo = infos.split('CRÉDITOS')[0].split('CICLO:')
+    infos, tipo = infos.split('TIPO:')
+    aux = infos
+    try:
+        infos, vigencia = infos.split('VIGÊNCIA:')
+        infos, codigo = infos.split('CÓDIGO:')
+    except:
+        infos = aux
+        infos, codigo = infos.split('CÓDIGO:')
+        infos, vigencia = infos.split('VIGÊNCIA:')
+
+    # Montando Embed
+    embed = discord.Embed(colour=0x0049db)
+    embed.title = materia
+    embed.url = f"http://e-computacao.com.br/files/ementas/{str(periodo).zfill(2)}.pdf"
+
+    descricao = '_ATENÇÃO: Funcionalidade ainda em desenvolvimento. Acesse o PDF para informações mais precisas._\n\n'
+    descricao = descricao + '**Confira os detalhes dessa disciplina:**\n\n'
+    descricao = descricao + f'**Período:** {periodo}\n'
+    descricao = descricao + f'**Código:** {codigo}\n'
+    descricao = descricao + f'**Tipo:** {tipo}\n'
+    descricao = descricao + f'**Ciclo:** {ciclo}\n'
+
+    embed.description = descricao    
+
+    embed.add_field(name='Pré-Requisitos:', value=pre_requisitos, inline=False)
+    embed.add_field(name='Ementa:', value=ementa, inline=False)
+    embed.add_field(name='Bibliografia Básica:', value=bibliografia_b, inline=False)
+
+    embed.set_footer(text='Quer o PDF? Clique no nome da matéria.')
+
+    return embed
+
 def start_periodo(periodo: int) -> Tuple[str, BytesIO]:
+    '''Função que recebe um período e retorna o um pdf com o conteúdo.'''
+
     # Pegando URL com base no período
     if(periodo > 10):
         msg = f"Aqui está o PDF da ementa das matérias optativas 🤓"
-        url = "http://e-computacao.com.br/files/ementas/optativas.pdf"
     else:
         msg = f"Aqui está o PDF da ementa das matérias do {periodo}º Período!"
-        url = f"http://e-computacao.com.br/files/ementas/{str(periodo).zfill(2)}.pdf"
 
     # Fazendo download e inserindo no buffer
-    file = requests.get(url, allow_redirects=True)
-    if(file.status_code != 200):
-        raise ConnectionError(f"Não foi possível fazer o download. status_code: {file.status_code}")
-    content = BytesIO(file.content)
+    content = download_ementa(periodo)
 
     # Retornando
     return msg, content
