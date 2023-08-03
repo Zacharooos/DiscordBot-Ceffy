@@ -23,27 +23,6 @@ def download_ementa(periodo: int) -> BytesIO:
     return BytesIO(file.content)
 
 
-# Configura view das materias
-def setup_view_materia() -> discord.ui.View:
-    view = discord.ui.View()
-    view.timeout = 10
-    button = discord.ui.Button(label='Materia tal', style=discord.ButtonStyle.blurple)
-    view.add_item(button)
-    return view
-
-
-# ...
-# def choices_materia(ctx: discord.Auto):
-#     materias = []
-#     with open("data/materias.json") as file:
-#         grade = load(file)
-#         i=0
-#         for materia in grade['materias']:
-#             materias.append(materia)
-#             i += 1
-#     print(i)
-#     return sorted([i for i in materia if i.startswith(ctx.value.lower())])
-
 # ...
 def choices_periodos() -> List[Choice]:
     periodos = []
@@ -75,7 +54,7 @@ def start_materia(materia: str) -> discord.Embed:
         if text[i].startswith(materia.upper()):
             infos = text[i]
             break
-    assert infos is not None, 'Erro ao encontrar disciplina na string do pdf'
+    assert infos is not None, f'Erro ao encontrar disciplina "{materia}" na string do pdf'
 
     # Recuperando informações do texto
     # Bibliografia complementar

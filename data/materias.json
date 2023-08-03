@@ -2,7 +2,8 @@
     "materias": {
         "Introdução à Engenharia":{
             "key": "1A",
-            "periodo": 1
+            "periodo": 1,
+            "emoji": "💩"
         },
         "Administração e Organização Empresarial":{
             "key": "1B",

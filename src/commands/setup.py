@@ -14,7 +14,7 @@ from logsService import Logs
 # Imports dos comandos
 import commands.soma.functions as soma
 import commands.provas.functions as provas
-import commands.ementa.functions as ementa
+import commands.ementa.view as ementa
 import commands.resumos.functions as resumos
 import commands.calendario.functions as calendario
 
@@ -80,8 +80,9 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                     )
         async def self(interaction: discord.Interaction):
             try:
-                embed = ementa.start_materia('Circuitos Lineares')
-                await interaction.response.send_message(embed=embed,
+                view = ementa.EmentaView(interaction)
+                view.log = logs
+                await interaction.response.send_message(view=view,
                                                         ephemeral=True)
             except Exception as e:
                 msg_error = 'Foi mal, nao consegui pegar os detalhes 😞'
