@@ -10,6 +10,7 @@ ID = 994616556401197179
 # Imports gerais
 import discord
 from logsService import Logs
+from asyncio import sleep
 
 # Imports dos comandos
 import commands.soma.functions as soma
@@ -134,6 +135,30 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                 await interaction.response.send_message(msg_error, ephemeral=True)
                 await logs.report_error('calendario', e)
 
+
+        '''
+        ##COMANDO HELLO_CEFFY\##
+        Talvez a ceffy entre no seu canal de voz e diga oi?
+        '''
+        @tree.command(
+                    name='hello_ceffy',
+                    description='😊',
+                    guild=discord.Object(id=ID)
+                    )
+        async def self(interaction: discord.Interaction):
+            try:
+                voice_channel = interaction.user.voice
+                if voice_channel is None:
+                    await interaction.response.send_message(content='Você não consegue me ouvir 😓')
+                    return
+                connection = await voice_channel.channel.connect(self_deaf=True)
+                await interaction.response.send_message(content='🥳', ephemeral=True)
+                connection.play(source=discord.FFmpegPCMAudio('data/audios/welcome-to-the-mato.mp3'))
+                while(connection.is_playing()):
+                    await sleep(2)
+                await connection.disconnect()
+            except Exception as e:
+                await interaction.response.send_message(content='Oii 😊')
 
         '''
         #COMANDO TAL#

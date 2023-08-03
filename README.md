@@ -18,6 +18,10 @@ Para instalar no linux é simples, apenas mande um `sudo apt-get install poppler
 Para instalar em outros sistemas, verifique no [README do pdf2image](https://github.com/Belval/pdf2image#how-to-install).
 
 
+É necessário ter instalado o _ffmpeg_ para conseguir reproduzir audios em canais de voz.  
+Para instalar no linux, use `sudo apt-get install ffmpeg` no termial.  
+Para windows, clique [aqui](https://ffmpeg.org/download.html#build-windows) e para MacOS, clique [aqui](https://ffmpeg.org/download.html#build-mac).
+
 
 ## **Funcionalidades**:
 - Implementar estrutura inicial. ZC ✅
@@ -48,5 +52,5 @@ Para instalar em outros sistemas, verifique no [README do pdf2image](https://git
 - Ajustes finais ceffy prod CJ
 - Verificar disponibilidade da ceffy em outros servers ZC
 - Hospedar ceffy CJ
-- Fazer comando EG CJ
+- Fazer comando EG CJ ✅
 
