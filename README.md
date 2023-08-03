@@ -42,6 +42,11 @@ Para instalar em outros sistemas, verifique no [README do pdf2image](https://git
 
 **Tarefas:**
 - Criação de um arquivo PY com constantes de Links
-- Criação de um Json com as matérias ✅
-- Ler o PDF de ementa
+- Release ceffy 1.0
+- Fazer comando infos CJ
+- Criar ceffy dev ZC
+- Ajustes finais ceffy prod CJ
+- Verificar disponibilidade da ceffy em outros servers ZC
+- Hospedar ceffy CJ
+- Fazer comando EG CJ
 
