@@ -142,7 +142,7 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                     return
                 connection = await voice_channel.channel.connect(self_deaf=True)
                 await interaction.response.send_message(content='🥳', ephemeral=True)
-                connection.play(source=discord.FFmpegPCMAudio('data/audios/welcome-to-the-mato.mp3'))
+                connection.play(source=discord.FFmpegPCMAudio(executable='ffmpeg.exe',source='data/audios/welcome-to-the-mato.mp3'))
                 while(connection.is_playing()):
                     await sleep(2)
                 await connection.disconnect()

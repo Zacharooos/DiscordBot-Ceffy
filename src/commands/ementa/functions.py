@@ -37,7 +37,7 @@ def start_materia(materia: str) -> discord.Embed:
     '''Recebe uma materia e retorna Embed com os dados dela'''
     
     # Verificando o período da matéria e fazendo download
-    with open("data/materias.json") as json:
+    with open("data/materias.json", encoding='utf8') as json:
         grade = load(json)
         periodo = grade['materias'][materia]['periodo']
 

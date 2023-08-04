@@ -20,7 +20,8 @@ Para instalar em outros sistemas, verifique no [README do pdf2image](https://git
 
 É necessário ter instalado o _ffmpeg_ para conseguir reproduzir audios em canais de voz.  
 Para instalar no linux, use `sudo apt-get install ffmpeg` no termial.  
-Para windows, clique [aqui](https://ffmpeg.org/download.html#build-windows) e para MacOS, clique [aqui](https://ffmpeg.org/download.html#build-mac).
+Para windows, clique [aqui](https://ffmpeg.org/download.html#build-windows) e para MacOS, clique [aqui](https://ffmpeg.org/download.html#build-mac).  
+Para windows, ffmpeg.exe deve estar na pasta do projeto (por enquanto)
 
 
 ## **Funcionalidades**:
@@ -47,10 +48,11 @@ Para windows, clique [aqui](https://ffmpeg.org/download.html#build-windows) e pa
 **Tarefas:**
 - Criação de um arquivo PY com constantes de Links
 - Release ceffy 1.0
-- Fazer comando infos CJ
+- Fazer comando infos CJ ✅
 - Criar ceffy dev ZC
 - Ajustes finais ceffy prod CJ
 - Verificar disponibilidade da ceffy em outros servers ZC
 - Hospedar ceffy CJ
 - Fazer comando EG CJ ✅
+- Arrumar compatibilidade entre win/linux
 

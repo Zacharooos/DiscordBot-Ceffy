@@ -42,7 +42,7 @@ class EmentaView(discord.ui.View):
     async def callback(self, interaction, select):
         self.clear_items()
         self.add_item(select)
-        with open('data/materias.json') as json:
+        with open('data/materias.json', encoding='utf8') as json:
             grade = load(json)
             for materia in grade['materias']:
                 if(grade['materias'][materia]['periodo'] == int(select.values[0])):
