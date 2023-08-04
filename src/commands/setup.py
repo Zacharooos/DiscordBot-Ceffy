@@ -18,24 +18,13 @@ import commands.provas.functions as provas
 import commands.ementa.view as ementa
 import commands.resumos.functions as resumos
 import commands.calendario.functions as calendario
+import commands.info.functions as info
 
 def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Client) -> bool:
     # Inicializando Services
     logs = Logs(client)
 
     try:
-        '''
-        ##COMANDO TESTE##
-        Comando apenas para testar se a ceffy está acordada e esperta 🥶🤖
-        '''
-        @tree.command(
-                name='teste',
-                description='Teste de slash',
-                guild=discord.Object(id=ID)
-                )
-        async def self(interaction: discord.Interaction, var: str):
-            await interaction.response.send_message(f"Oi Onii-chan o((>ω< ))o. \nVocê mandou '{var}'!")
-
 
         '''
         ##COMANDO SOMA##
@@ -84,7 +73,7 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                 view = ementa.EmentaView(interaction)
                 view.log = logs
                 await interaction.response.send_message(view=view,
-                                                        ephemeral=True)
+                                                        ephemeral=False)
             except Exception as e:
                 msg_error = 'Foi mal, nao consegui pegar os detalhes 😞'
                 await interaction.response.send_message(msg_error, ephemeral=True)
@@ -159,6 +148,20 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                 await connection.disconnect()
             except Exception as e:
                 await interaction.response.send_message(content='Oii 😊')
+
+
+        '''
+        ##COMANDO INFO##
+        Ceffy envia uma mensagem com informações dela
+        '''
+        @tree.command(
+                    name='info',
+                    description='Sobre o bot',
+                    guild=discord.Object(id=ID)
+                    )
+        async def self(interaction: discord.Interaction):
+            await interaction.response.send_message(embed=info.start(), ephemeral=False)
+
 
         '''
         #COMANDO TAL#
