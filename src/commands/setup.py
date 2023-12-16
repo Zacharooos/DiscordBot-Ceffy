@@ -142,12 +142,17 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                     return
                 connection = await voice_channel.channel.connect(self_deaf=True)
                 await interaction.response.send_message(content='🥳', ephemeral=True)
+                discord.opus.load_opus('libopus.so.0')
+                if not discord.opus.is_loaded():
+                    raise Exception("Opus not loaded")
                 connection.play(source=discord.FFmpegPCMAudio('data/audios/welcome-to-the-mato.mp3'))
                 while(connection.is_playing()):
                     await sleep(2)
                 await connection.disconnect()
             except Exception as e:
                 await interaction.response.send_message(content='Oii 😊')
+                await logs.report_error('hello_ceffy', e)
+                print(e)
 
 
         '''
