@@ -1,6 +1,6 @@
 import discord
 
-VERSION = '1.0'
+VERSION = '1.0.1'
 
 LINK_GITHUB = 'https://github.com/Zacharooos/DiscordBot-Ceffy'
 

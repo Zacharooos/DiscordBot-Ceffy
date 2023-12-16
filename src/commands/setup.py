@@ -1,4 +1,4 @@
-# ARQUIVO DE SETUP DE COMANDOS DO BOT v0.4#
+# ARQUIVO DE SETUP DE COMANDOS DO BOT v1.0.1#
 # - Aqui serão importadas as funções de cada comando do bot
 # - A função principal setup_commands recebe a tree como parâmetro e popula com os comandos
 # - Tentem seguir o padrão de comentário/descrição, declaração, e espaço para proximo comando
@@ -70,14 +70,14 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                     )
         async def self(interaction: discord.Interaction):
             try:
+                await interaction.response.defer()
                 view = ementa.EmentaView(interaction)
                 view.log = logs
-                await interaction.response.send_message(view=view,
-                                                        ephemeral=False)
+                await interaction.followup.send(view=view, ephemeral=False)
             except Exception as e:
+                await logs.report_error('detalhes_materia', e)
                 msg_error = 'Foi mal, nao consegui pegar os detalhes 😞'
                 await interaction.response.send_message(msg_error, ephemeral=True)
-                await logs.report_error('detalhes_materia', e)
 
 
         '''
@@ -117,12 +117,13 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
                     )
         async def self(interaction: discord.Interaction):
             try:
+                await interaction.response.defer(thinking=True)
                 embed, attachment = calendario.start()
-                await interaction.response.send_message(embed=embed, file=attachment, ephemeral=False)
+                await interaction.followup.send(embed=embed, file=attachment, ephemeral=False)
             except Exception as e:
-                msg_error = 'Não consegui pegar o calendário 😣'
-                await interaction.response.send_message(msg_error, ephemeral=True)
                 await logs.report_error('calendario', e)
+                msg_error = 'Não consegui pegar o calendário 😣'
+                await interaction.followup.send(msg_error, ephemeral=True)
 
 
         '''
