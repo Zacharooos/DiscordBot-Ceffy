@@ -24,3 +24,6 @@ RUN pip install --upgrade pip && \
 
 # Configurar o comando de inicialização da aplicação
 CMD ["python3", "/app/src/main.py"]
+
+# Comando para build em ARM64:
+# docker buildx build --platform linux/arm64/v8 -t myimage:arm64v8 .

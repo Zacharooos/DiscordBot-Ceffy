@@ -29,9 +29,10 @@ class EmentaView(discord.ui.View):
     # Sobrescrita do callback de erro
     async def on_error(self, interaction: Interaction[discord.Client], error: Exception, item: Item[Any]):
         if self.log is not None:
-                msg_error = 'Foi mal, nao consegui pegar os detalhes 😞'
-                await interaction.response.edit_message(content=msg_error, view=None, delete_after=30)
+                self.stop()
                 await self.log.report_error('detalhes_materia', error)
+                msg_error = 'Foi mal, nao consegui pegar os detalhes 😞'
+                await self.interaction.edit_original_response(content=msg_error)
         else:
             await super().on_error(interaction, error, item)
 
@@ -48,12 +49,20 @@ class EmentaView(discord.ui.View):
                 if(grade['materias'][materia]['periodo'] == int(select.values[0])):
                     button = discord.ui.Button(label=materia, style=discord.ButtonStyle.primary)
                     # Função que criará um callback personalizado para cada button
+                    # Nesta função, editamos a mensagem inicial e mandamos uma nova, para utilizar o defer
                     def create_callback(btn):
-                        async def button_callback(interaction):
-                            self.triggered = True
-                            await interaction.response.edit_message(content='Aqui estão as informações:',
-                                                                    embed=start_materia(btn.label),
-                                                                    view=None)
+                        async def button_callback(interaction: discord.Interaction):
+                            self.stop()
+                            await self.interaction.edit_original_response(content=f'Ok, vou pegar as informações de _{btn.label}_',
+                                                                          view=None)
+                            await interaction.response.defer(thinking=True)
+                            try:
+                                self.triggered = True
+                                await interaction.followup.send(content='Aqui estão as informações:',
+                                                                        embed=start_materia(btn.label))
+                            except Exception as e:
+                                await interaction.delete_original_response()
+                                raise e
                         return button_callback
                     button.callback = create_callback(button)
                     # Adicionando button na view

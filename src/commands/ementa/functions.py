@@ -117,11 +117,26 @@ def start_materia(materia: str) -> discord.Embed:
     descricao = descricao + f'**Tipo:** {tipo}\n'
     descricao = descricao + f'**Ciclo:** {ciclo}\n'
 
-    embed.description = descricao    
+    # Verificar se a embed ultrapassou o limite de caracteres e adicionar os fields
+    if len(descricao) > 1000:
+        embed.description = "Descrição muito longa, acesse o pdf."
+    else:
+        embed.description = descricao    
 
-    embed.add_field(name='Pré-Requisitos:', value=pre_requisitos, inline=False)
-    embed.add_field(name='Ementa:', value=ementa, inline=False)
-    embed.add_field(name='Bibliografia Básica:', value=bibliografia_b, inline=False)
+    if len(pre_requisitos) > 1000:
+        embed.add_field(name='Pré-Requisitos:', value="_Texto muito grande, acesse o pdf_", inline=False)
+    else:
+        embed.add_field(name='Pré-Requisitos:', value=pre_requisitos, inline=False)
+
+    if len(ementa) > 1000:
+        embed.add_field(name='Ementa:', value="_Texto muito grande, acesse o pdf_", inline=False)
+    else:
+        embed.add_field(name='Ementa:', value=ementa, inline=False)
+
+    if len(bibliografia_b) > 1000:
+        embed.add_field(name='Bibliografia Básica:', value="_Texto muito grande, acesse o pdf_", inline=False)
+    else:
+        embed.add_field(name='Bibliografia Básica:', value=bibliografia_b, inline=False)
 
     embed.set_footer(text='Quer o PDF? Clique no nome da matéria.')
 
