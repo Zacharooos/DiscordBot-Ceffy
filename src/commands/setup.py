@@ -1,7 +1,8 @@
-# ARQUIVO DE SETUP DE COMANDOS DO BOT v1.0.1#
+# ARQUIVO DE SETUP DE COMANDOS DO BOT v1.1#
 # - Aqui serão importadas as funções de cada comando do bot
 # - A função principal setup_commands recebe a tree como parâmetro e popula com os comandos
 # - Tentem seguir o padrão de comentário/descrição, declaração, e espaço para proximo comando
+# - Deixem o comando infos como último por favor
 
 # Constantes
 
@@ -19,6 +20,7 @@ import commands.ementa.view as ementa
 import commands.resumos.functions as resumos
 import commands.calendario.functions as calendario
 import commands.info.functions as info
+import commands.eventos.view as eventos
 
 def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Client) -> bool:
     # Inicializando Services
@@ -157,6 +159,43 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
 
 
         '''
+        ##COMANDO CRIAR_EVENTO##
+        Ceffy cadastra um evento no sistema
+        '''
+        @tree.command(
+                    name='criar_evento',
+                    description='Adiciona um evento que será notificado em sua data',
+                    guild=discord.Object(id=ID)
+                    )
+        async def self(interaction: discord.Interaction):
+            try:
+                modal = eventos.modal_evento()
+                await interaction.response.send_modal(modal)
+            except Exception as e:
+                await logs.report_error('criar_evento', e)
+                await interaction.followup.send('Desculpe, não consegui cadastrar esse evento 😓😓', ephemeral=True)
+            
+
+        '''
+        ## COMANDO MOSTRAR_EVENTOS##
+        Ceffy mostra os eventos que estão no sistema
+        '''
+        @tree.command(
+                    name='mostrar_eventos',
+                    description='Mostra os eventos que estão por vir',
+                    guild=discord.Object(id=ID)
+                    )
+        @discord.app_commands.choices(mes=[discord.app_commands.Choice(name=f'{i}', value=f'{i}') for i in range(1,13)])
+        async def self(interaction: discord.Interaction, mes: discord.app_commands.Choice[str] = None):
+            try:
+                await interaction.response.defer(thinking=True)
+                await interaction.followup.send(content='Aqui os eventos:', embed=eventos.mostrar_eventos(mes))
+            except Exception as e:
+                await logs.report_error('mostrar_eventos', e)
+                await interaction.followup.send(content='Desculpe, não consegui acessar os eventos.', ephemeral=True)
+
+
+        '''
         ##COMANDO INFO##
         Ceffy envia uma mensagem com informações dela
         '''
@@ -178,5 +217,5 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
         return True
 
     except Exception as e:
-        print('Erro ao incluir comandos!\n', e)
-        return False
+        print('Erro ao incluir comandos!\n',)
+        raise e

@@ -1,7 +1,9 @@
-# Arquivo de configuração vs 0.4
+# Arquivo de configuração vs 1.0
 # Arquivo para guardar funções que desempenhem papéis de configuração ou ajuste do bot em sí.
+# TODO: Incluir tasks no arquivo setup.py, e não aqui
 import json
 import discord
+import commands.eventos.functions as eventos
 from discord.ext.commands import Bot
 
 
@@ -25,6 +27,7 @@ def iniciarConfig():
                 await tree.sync(guild = discord.Object(id=994616556401197179)) #guild specific: leave blank if global (global registration can take 1-24 hours)
                 self.synced = True
             print(f"We have logged in as {self.user}.")
+            await client.loop.create_task(eventos.verificar_eventos(self))
 
     client = aclient()
     tree = discord.app_commands.CommandTree(client)
