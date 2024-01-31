@@ -3,4 +3,5 @@ venv
 src/config.json
 virtualEnviroment/BotDiscord/
 examples/teste.txt
+data/eventos.json
 *.Identifier

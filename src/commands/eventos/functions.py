@@ -1,10 +1,10 @@
+import discord.ext.tasks
 import datetime
 import discord
 import asyncio
 from json import load, dump
-import discord.ext.tasks
 
-CHANNEL_ID = 1127215221807775795
+CHANNEL_ID = 994616557487534122
 
 
 def start_cadastro(data:str, nome: str, descricao: str):
@@ -156,3 +156,7 @@ def mostrar_eventos(mes):
                 inline=False
             )
     return embed
+
+def json_eventos():
+    file = open("data/eventos.json", 'r')
+    return file

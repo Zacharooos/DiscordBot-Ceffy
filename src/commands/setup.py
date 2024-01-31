@@ -1,4 +1,4 @@
-# ARQUIVO DE SETUP DE COMANDOS DO BOT v1.1#
+# ARQUIVO DE SETUP DE COMANDOS DO BOT v1.2#
 # - Aqui serão importadas as funções de cada comando do bot
 # - A função principal setup_commands recebe a tree como parâmetro e popula com os comandos
 # - Tentem seguir o padrão de comentário/descrição, declaração, e espaço para proximo comando
@@ -21,6 +21,7 @@ import commands.resumos.functions as resumos
 import commands.calendario.functions as calendario
 import commands.info.functions as info
 import commands.eventos.view as eventos
+import commands.enquetes.functions as enquetes
 
 def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Client) -> bool:
     # Inicializando Services
@@ -193,6 +194,64 @@ def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Clien
             except Exception as e:
                 await logs.report_error('mostrar_eventos', e)
                 await interaction.followup.send(content='Desculpe, não consegui acessar os eventos.', ephemeral=True)
+
+
+        '''
+        ## COMANDO JSON_EVENTOS##
+        Ceffy mostra os eventos que estão no sistema
+        '''
+        @tree.command(
+                    name='json_eventos',
+                    description='Retorna o json dos eventos cadastrados',
+                    guild=discord.Object(id=ID)
+                    )
+        async def self(interaction: discord.Interaction):
+            try:
+                await interaction.response.defer(thinking=True)
+                file = eventos.json_eventos()
+                filename = 'eventos.json'
+                await interaction.followup.send('Aqui os eventos que tenho cadastrados:', 
+                                                        file=discord.File(fp=file, filename=filename),
+                                                        ephemeral=False)
+            except Exception as e:
+                msg_error = 'Foi mal, nao consegui mandar o arquivo 😥'
+                await interaction.followup.send(msg_error, ephemeral=True)
+                await logs.report_error('json_eventos', e)
+
+
+        '''
+        ##COMANDO ENQUETE##
+        Ceffy abre uma enquete para votação
+        '''
+        @tree.command(
+                    name='enquete',
+                    description='Abrir uma enquete personalizada',
+                    guild=discord.Object(id=ID)
+                    )
+        async def self(interaction: discord.Interaction, titulo: str, opcoes: str, timeout: str = None):
+            """
+            Parameters
+            -----------
+            opcoes: str
+                Separe as opções com "|". Ex: "Sim|Não|Talvez"
+            timeout: str
+                Tempo para o fim da enquete. Use 'm', 'h', 'd' para minutos, horas e dias. Ex: "30m", "3h", "2d".
+            """
+            if 2 <= len(opcoes.split('|')) <= 10:
+                await interaction.response.send_message(content='Ok. 😊', delete_after=30, ephemeral=True)
+                if timeout:
+                    tempo = timeout[:-1]
+                    unidade = timeout[-1].lower()
+                    if not tempo.isnumeric() or unidade.isnumeric() or unidade not in ['m','h','d']:
+                        await interaction.followup.send(content='''O formato do timeout está errado. Use 'm', 'h', 'd' para minutos, horas e dias. Ex: "30m", "3h", "2d".''', 
+                                                        ephemeral=True)
+                        return
+                    await enquetes.start(user=interaction.user, channel=interaction.channel, titulo=titulo, opcoes_str=opcoes, timeout=[int(tempo), unidade])
+                else:
+                    await enquetes.start(user=interaction.user, channel=interaction.channel, titulo=titulo, opcoes_str=opcoes, timeout=None)
+            else:
+                await interaction.response.send_message(content='Você precisa me dar no mínimo 2 opções e no máximo 10. Lembre-se de colocar no formato correto.', 
+                                                        delete_after=30, ephemeral=True)
 
 
         '''

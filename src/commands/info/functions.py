@@ -1,6 +1,6 @@
 import discord
 
-VERSION = '1.1'
+VERSION = '1.2'
 
 LINK_GITHUB = 'https://github.com/Zacharooos/DiscordBot-Ceffy'
 
@@ -22,7 +22,7 @@ def start():
 
     embed.title = 'Sobre o bot'
     embed.set_author(
-        name='Ceffy Discrod Bot',
+        name='Ceffy Discord Bot',
         url=LINK_GITHUB,
         icon_url='https://media.discordapp.net/attachments/866760339681050655/868248456525930576/unknown.png?width=563&height=662'
     )
