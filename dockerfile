@@ -22,6 +22,9 @@ RUN pip install --upgrade pip && \
     pip install -r requirements.txt && \
     apk del .tmp-build-deps
 
+# Adiniocar variavel de ambiente GOOGLE_API_KEY
+# ARG GOOGLE_API_KEY=[api_key]
+
 # Configurar o comando de inicialização da aplicação
 CMD ["python3", "/app/src/main.py"]
 

@@ -23,6 +23,10 @@ Para instalar no linux, use `sudo apt-get install ffmpeg` no termial.
 Para windows, clique [aqui](https://ffmpeg.org/download.html#build-windows) e para MacOS, clique [aqui](https://ffmpeg.org/download.html#build-mac).
 
 
+Para a utilização do recurso de IA, é necessário colocar uma key da API da google gemini na variável de ambiente GOOGLE_API_KEY.
+Além disso, um arquivo txt de contexto deve ser adicionado em `data/context_ai.txt`.
+
+
 ## **Funcionalidades**:
 - Implementar estrutura inicial. ZC ✅
 - GetProvas. ZC ✅

@@ -56,7 +56,7 @@ async def start(user: discord.User, channel, opcoes_str: str, titulo: str, timeo
             votos = len(resultados[emoji]) - 1
             users_str = ''
             for user in resultados[emoji]:
-                if user.id != 1137377861653778542:
+                if user.id != 1137377861653778542 and user.id != 1072165474521071716:
                     users_str += f"<@{user.id}> \n"
             
             embed.add_field(name=f"{emoji}: {opcao} ({votos} votos)", value=users_str, inline=False)

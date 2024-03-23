@@ -1,6 +1,6 @@
 import discord
 
-VERSION = '1.2'
+VERSION = '1.3'
 
 LINK_GITHUB = 'https://github.com/Zacharooos/DiscordBot-Ceffy'
 
@@ -9,6 +9,8 @@ Oi. Sou a **Ceffy**, bot feito para facilitar o acesso à informações do curso
 Possuo alguns comandos que podem ajudar com assuntos relacionados à faculdade. \
 No geral, meu objetivo é ajudar com essas coisas usando a praticidade do discord.
 Digite `/` para começar a explorar os comandos.
+
+Quer conversar cmg?? Vem no canal `cantinho-da-ceffy` >.<
 
 Minhas funcionalidades ainda estão em desenvolvimento e mais coisas serão adicionadas.
 
@@ -35,15 +37,22 @@ def start():
     embed.add_field(
         name='Gabriel Cesar "Zacharos"',
         value=
-        '''Discord: @zacharos.oficial\n''' +
+        '''Discord: <@367836790247391232>\n''' +
         '''GitHub: [Zacharooos](https://github.com/Zacharooos)''',
         inline=True
     )
     embed.add_field(
         name='Carlos Lagreca',
         value=
-        '''Discord: @cjplayer\n''' +
+        '''Discord: <@327986627152445452>\n''' +
         '''GitHub: [CarlosLagreca](https://github.com/CarlosLagreca)''',
+        inline=True
+    )
+    embed.add_field(
+        name='Matheus Segatto',
+        value=
+        '''Discord: <@862863783370162238>\n''' +
+        '''GitHub: [MatheusSegatto](https://github.com/MatheusSegatto)''',
         inline=True
     )
 

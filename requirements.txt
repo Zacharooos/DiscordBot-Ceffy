@@ -3,3 +3,6 @@ requests
 pdfminer.six
 pdf2image
 PyNaCl
+google-generativeai
+pandas
+openpyxl

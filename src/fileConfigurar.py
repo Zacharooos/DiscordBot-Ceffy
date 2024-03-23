@@ -18,7 +18,9 @@ def recuperarToken():
 def iniciarConfig():
     class aclient(discord.Client):
         def __init__(self):
-            super().__init__(intents = discord.Intents.default())
+            intents = discord.Intents.default()
+            intents.message_content = True
+            super().__init__(intents = intents)
             self.synced = False #we use this so the bot doesn't sync commands more than once
 
         async def on_ready(self):

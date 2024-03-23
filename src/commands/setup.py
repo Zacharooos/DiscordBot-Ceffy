@@ -22,10 +22,13 @@ import commands.calendario.functions as calendario
 import commands.info.functions as info
 import commands.eventos.view as eventos
 import commands.enquetes.functions as enquetes
+import commands.chat.functions as aichat
 
 def setup_commands(tree: discord.app_commands.CommandTree, client: discord.Client) -> bool:
     # Inicializando Services
     logs = Logs(client)
+
+    aichat.setup_ai_chat(client)
 
     try:
 
